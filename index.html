@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>교회학교 말씀 퀴즈 - 주제를 맞춰라!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Nanum Gothic', sans-serif, Arial;
+    }
+    body {
+      background-color: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .quiz-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .step-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+    .btn-step {
+      flex: 1;
+      padding: 10px 4px;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #3498db;
+      background-color: #ffffff;
+      color: #3498db;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-step:hover:not(:disabled), .btn-step.active {
+      background-color: #3498db;
+      color: #ffffff;
+    }
+    /* 잠긴 버튼 스타일 */
+    .btn-step:disabled {
+      border-color: #bdc3c7;
+      background-color: #ecf0f1;
+      color: #95a5a6;
+      cursor: not-allowed;
+    }
+    .hint-box {
+      background-color: #f9f9f9;
+      border: 2px dashed #bdc3c7;
+      border-radius: 15px;
+      padding: 22px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .question-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #e67e22;
+      margin-bottom: 14px;
+    }
+    .hint-content {
+      font-size: 16px;
+      color: #34495e;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+    .options-box {
+      margin-top: 15px;
+      padding: 10px;
+      background: #edf2f7;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #2c3e50;
+      width: 100%;
+    }
+    .answer-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .answer-input {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+    }
+    .answer-input:focus {
+      border-color: #2ecc71;
+    }
+    .btn-submit {
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      background-color: #27ae60;
+    }
+    .result-message {
+      font-size: 18px;
+      font-weight: bold;
+      min-height: 30px;
+      word-break: keep-all;
+    }
+    .correct { color: #27ae60; }
+    .wrong { color: #e74c3c; }
+    .announce-box {
+      background-color: #f3e5f5;
+      border: 2px solid #8e44ad;
+      border-radius: 12px;
+      padding: 15px;
+      color: #8e44ad;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-card">
+  <h1>✨ 교회학교 말씀 퀴즈 ✨</h1>
+  
+  <!-- 1~4단계 버튼 -->
+  <div class="step-buttons">
+    <button id="btn1" class="btn-step active" onclick="showHint(1)">1단계</button>
+    <button id="btn2" class="btn-step" onclick="showHint(2)" disabled>2단계 🔒</button>
+    <button id="btn3" class="btn-step" onclick="showHint(3)" disabled>3단계 🔒</button>
+    <button id="btn4" class="btn-step" onclick="showHint(4)" disabled>4단계 🔒</button>
+  </div>
+
+  <!-- 힌트 표시 영역 -->
+  <div class="hint-box">
+    <div id="question" class="question-title">1단계: 이 바다는 어디일까요?</div>
+    <div id="hint" class="hint-content">
+      아프리카 대륙과 아라비아 반도 사이에 위치한 길고 깊은 바다입니다. 바닷속 붉은 산호와 해조류 때문에 특별한 이름이 붙었으며, 바람과 물살이 매우 센 자연환경을 가지고 있습니다.
+    </div>
+    <div id="options" class="options-box" style="display: none;"></div>
+  </div>
+
+  <!-- 정답 입력 영역 (1~3단계용) -->
+  <div id="answerSection" class="answer-section">
+    <input type="text" id="answerInput" class="answer-input" placeholder="정답을 입력하세요" onkeyup="if(window.event.keyCode==13){checkAnswer()}">
+    <button class="btn-submit" onclick="checkAnswer()">제출</button>
+  </div>
+
+  <!-- 결과 및 안내 메시지 영역 -->
+  <div id="result" class="result-message"></div>
+</div>
+
+<script>
+  let currentStep = 1;
+  let unlockedStep = 1;
+
+  const hints = {
+    1: {
+      question: "1단계: 이 바다는 어디일까요?",
+      text: "아프리카 대륙과 아라비아 반도 사이에 위치한 길고 깊은 바다입니다. 바닷속 붉은 산호와 해조류 때문에 특별한 이름이 붙었으며, 바람과 물살이 매우 센 자연환경을 가지고 있습니다.",
+      options: "",
+      answer: "홍해"
+    },
+    2: {
+      question: "2단계: 어떤 행동(낱말)을 뜻할까요?",
+      text: "하나로 연결되어 있던 물건이나 넓은 바닷물을 둘로 나누거나 쪼개는 행동을 뜻하는 낱말입니다.",
+      options: "보기: ① 잇다 &nbsp; ② 가르다 &nbsp; ③ 덮다 &nbsp; ④ 모으다",
+      answer: "가르다"
+    },
+    3: {
+      question: "3단계: 이분은 누구일까요?",
+      text: "온 세상을 말씀으로 창조하시고, 위험에 처한 이스라엘 백성을 인도하시며 언제나 우리와 함께하시는 유일한 창조주이십니다.",
+      options: "",
+      answer: "하나님"
+    },
+    4: {
+      question: "4단계: 오늘 말씀의 주제는 무엇일까요?",
+      text: "1, 2, 3단계에서 찾은 힌트(홍해 / 가르다 / 하나님)를 모두 모아 오늘 말씀의 완성된 주제를 생각해보세요!",
+      options: "",
+      answer: ""
+    }
+  };
+
+  function showHint(step) {
+    if (step > unlockedStep) return;
+
+    currentStep = step;
+    
+    // 버튼 스타일 업데이트
+    for (let i = 1; i <= 4; i++) {
+      const btn = document.getElementById(`btn${i}`);
+      if (i === step) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    }
+
+    // 힌트 내용 업데이트
+    document.getElementById('question').innerText = hints[step].question;
+    document.getElementById('hint').innerText = hints[step].text;
+    
+    const optionsDiv = document.getElementById('options');
+    if (hints[step].options) {
+      optionsDiv.innerHTML = hints[step].options;
+      optionsDiv.style.display = "block";
+    } else {
+      optionsDiv.style.display = "none";
+    }
+
+    // 4단계에서는 정답 입력창을 숨기고 발표 안내 박스 표시
+    const answerSection = document.getElementById('answerSection');
+    const resultDiv = document.getElementById('result');
+
+    if (step === 4) {
+      answerSection.style.display = "none";
+      resultDiv.innerHTML = "<div class='announce-box'>✋ 손을 들어 발표해 주세요!</div>";
+    } else {
+      answerSection.style.display = "flex";
+      document.getElementById('answerInput').value = "";
+      resultDiv.innerText = "";
+    }
+  }
+
+  function checkAnswer() {
+    const userInput = document.getElementById('answerInput').value.trim().replace(/\s+/g, '');
+    const resultDiv = document.getElementById('result');
+
+    if (!userInput) {
+      resultDiv.innerText = "정답을 입력해주세요!";
+      resultDiv.className = "result-message wrong";
+      return;
+    }
+
+    const stepAnswer = hints[currentStep].answer.replace(/\s+/g, '');
+
+    // 2단계(가르다) 보기에 대한 예외 처리 (2, ②, 2번 허용)
+    let isCorrect = (userInput === stepAnswer);
+    if (currentStep === 2 && (userInput === '2' || userInput === '②' || userInput === '2번')) {
+      isCorrect = true;
+    }
+
+    if (isCorrect) {
+      resultDiv.innerText = `🎉 정답입니다! (${currentStep}단계 통과)`;
+      resultDiv.className = "result-message correct";
+
+      // 다음 단계 해금
+      if (currentStep === unlockedStep && unlockedStep < 4) {
+        unlockedStep++;
+        const nextBtn = document.getElementById(`btn${unlockedStep}`);
+        nextBtn.disabled = false;
+        
+        if (unlockedStep === 4) {
+          nextBtn.innerText = "4단계 (주제)";
+        } else {
+          nextBtn.innerText = `${unlockedStep}단계`;
+        }
+
+        // 1.2초 후 자동으로 다음 단계 이동
+        setTimeout(() => {
+          showHint(unlockedStep);
+        }, 1200);
+      }
+    } else {
+      resultDiv.innerText = "❌ 아쉽네요. 다시 생각해보세요!";
+      resultDiv.className = "result-message wrong";
+    }
+  }
+</script>
+
+</body>
+</html>

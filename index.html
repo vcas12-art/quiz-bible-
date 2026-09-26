@@ -108,11 +108,12 @@
     </div>
   </div>
 
-  <!-- Answer Input Section -->
-  <div id="answerSection" class="flex gap-2 mb-4">
-    <input type="text" id="answerInput" class="flex-1 px-4 py-3 text-base border-2 border-gray-300 rounded-xl outline-none focus:border-blue-500 transition-all font-bold text-center text-gray-800" placeholder="정답 입력" onkeyup="if(event.key==='Enter'){checkAnswer()}">
-    <button onclick="checkAnswer()" class="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white font-bold px-5 py-3 rounded-xl transition-all shadow-md font-jua">
-      제출
+  <!-- Answer Input Section (스마트폰 최적화: 입력창 아래 중앙 제출 버튼) -->
+  <div id="answerSection" class="flex flex-col items-center gap-3 mb-4 w-full">
+    <input type="text" id="answerInput" class="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-xl outline-none focus:border-blue-500 transition-all font-bold text-center text-gray-800 shadow-inner" placeholder="정답 입력" onkeyup="if(event.key==='Enter'){checkAnswer()}">
+    <button onclick="checkAnswer()" class="w-full py-3.5 px-6 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white font-bold text-lg rounded-xl transition-all shadow-md font-jua text-center flex items-center justify-center gap-2">
+      <span>제출하기</span>
+      <span>➔</span>
     </button>
   </div>
 

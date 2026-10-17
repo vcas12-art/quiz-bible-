@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>유초등2부 말씀 퀴즈 - 변화를 찾아라!</title>
+  <title>유초등2부 말씀 퀴즈 - 스데반</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
   <style>
@@ -44,9 +44,6 @@
     <span class="inline-block bg-emerald-100 text-emerald-800 font-bold px-4 py-1 rounded-full text-xs md:text-sm mb-2 font-jua">
       🌱 유초등2부 말씀 퀴즈 🌱
     </span>
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 font-jua">
-      ✨ 놀라운 변화를 찾아라! ✨
-    </h1>
   </div>
 
   <!-- Step Progress Buttons -->
@@ -60,21 +57,21 @@
   <!-- Main Bible Verse Banner -->
   <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3 mb-4 text-center">
     <p class="text-xs md:text-sm font-bold text-emerald-900 leading-relaxed">
-      📖 <span class="underline decoration-amber-400 decoration-2">"그런즉 누구든지 그리스도 안에 있으면 새로운 피조물이라 이전 것은 지나갔으니 보라 새 것이 되었도다"</span>
-      <span class="block text-xs text-emerald-600 font-normal mt-0.5">(고린도후서 5장 17절)</span>
+      📖 <span class="underline decoration-amber-400 decoration-2">"주 예수여 내 영혼을 받으시옵소서 하고 무릎을 꿇고 크게 불러 이르되 주여 이 죄를 그들에게 돌리지 마옵소서"</span>
+      <span class="block text-xs text-emerald-600 font-normal mt-0.5">(사도행전 7장 59~60절)</span>
     </p>
   </div>
 
   <!-- Question Box -->
   <div class="bg-amber-50/80 border-2 border-dashed border-amber-300 rounded-2xl p-4 md:p-5 mb-5 min-h-[190px] flex flex-col justify-center items-center text-center">
     <div id="questionTitle" class="text-base md:text-lg font-bold text-amber-900 font-jua mb-2">
-      1단계: 예수님을 만나 모든 것을 버리고 따라나선 대표적인 제자는?
+      <!-- Dynamic Question Title -->
     </div>
     <div id="questionHint" class="text-xs md:text-sm text-gray-700 leading-relaxed font-medium">
       <!-- Dynamic Hint Content -->
     </div>
 
-    <!-- Unlocked Hint Card for later steps -->
+    <!-- Unlocked Hint Card for step 4 -->
     <div id="unlockedHintCard" class="hidden w-full mt-3 p-3 bg-amber-100 border-2 border-amber-400 rounded-xl text-amber-900 font-bold text-xs md:text-sm">
       <!-- Dynamic Step Hint -->
     </div>
@@ -94,7 +91,7 @@
     </div>
   </div>
 
-  <!-- Answer Input Section -->
+  <!-- Answer Input Section (Centered Submit Button Below Input) -->
   <div id="answerSection" class="flex flex-col items-center gap-3 mb-4 w-full">
     <input type="text" id="answerInput" class="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-xl outline-none focus:border-emerald-500 transition-all font-bold text-center text-gray-800 shadow-inner" placeholder="정답 입력 또는 보기 선택" onkeyup="if(event.key==='Enter'){checkAnswer()}">
     <button onclick="checkAnswer()" class="w-full py-3.5 px-6 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white font-bold text-lg rounded-xl transition-all shadow-md font-jua text-center flex items-center justify-center gap-2">
@@ -126,39 +123,41 @@
   let currentStep = 1;
   let unlockedStep = 1;
 
-  let stepHintsEarned = {
-    1: "💡 1단계 힌트: 예수님을 만나 모든 것을 버리고 따라나선 어부 베드로!",
-    2: "💡 2단계 힌트: 성령의 충만함을 받고 담대하게 복음을 전한 베드로의 외침!"
+  // Key word parts earned per step
+  let stepLettersEarned = {
+    1: "스",
+    2: "데",
+    3: "반"
   };
 
   const stepData = {
     1: {
-      title: "1단계: 예수님을 만나 모든 것을 버리고 따라나선 대표적인 제자는?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(4지 선다)</span><br>갈릴리 바다에서 물고기를 잡다가 예수님의 부르심을 받은 제자의 이름은 무엇일까요?`,
-      answers: ["베드로", "1", "①", "1번"],
+      title: "1단계: 어려움 속에서도 하나님께 드리는 이것은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(4지 선다)</span><br>돌에 맞으면서도 나를 괴롭히는 원수들을 위해서 하나님께 간절히 한 행동은 무엇일까요?`,
+      answers: ["기도", "1", "①", "1번"],
       type: "mcq",
-      options: ["① 베드로", "② 요한", "③ 야고보", "④ 바울"]
+      options: ["① 기도", "② 원망", "③ 후회", "④ 다툼"]
     },
     2: {
-      title: "2단계: 베드로가 열정적으로 행한 이것은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>예수님의 십자가와 부활 이후, 베드로가 사람들에게 구원의 소식을 전파했던 이 활동은 무엇일까요?`,
+      title: "2단계: 예수님의 기쁜 소식을 전하는 행동은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>담대하게 유대인들 앞에서 복음을 크게 외쳐 전한 이것은 무엇일까요?`,
       answers: ["전도"],
       type: "grid",
-      letters: ["전", "기도", "도", "찬", "양", "섬", "교", "회", "믿", "음", "순", "종"]
+      letters: ["전", "도", "칭", "찬", "자", "랑", "노", "래", "봉", "사", "기", "쁨"]
     },
     3: {
-      title: "3단계: 예수님의 기쁜 소식인 이것은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>베드로가 온 세상에 전파한, 죄인들을 구원하시는 예수 그리스도의 기쁜 소식을 뜻하는 두 글자 단어는 무엇일까요?`,
-      answers: ["복음"],
+      title: "3단계: 죽음 앞에서도 잃지 않은 마음은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>하나님의 영광과 하나님 우편에 서신 예수님을 바라보며 지킨 이것은 무엇일까요?`,
+      answers: ["믿음"],
       type: "grid",
-      letters: ["은", "복", "혜", "음", "평", "화", "구", "원", "생", "명", "빛", "소"]
+      letters: ["믿", "음", "두", "려", "움", "포", "기", "슬", "픔", "의", "심", "소", "망"]
     },
     4: {
-      title: "4단계 (최종): 놀라운 주제를 완성하세요!",
-      hintHtml: `<span class="inline-block bg-yellow-200 text-yellow-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">✨ 최종 주제 맞추기 (4지 선다)</span><br>어부였던 베드로가 전도와 복음을 통해 예수님 안에서 완전히 새로워진 삶을 살게 되었습니다! 올바른 주제는 무엇일까요?`,
-      answers: ["변화", "1", "①", "1번"],
-      type: "mcq",
-      options: ["① 변화", "② 정체", "③ 실패", "④ 포기"]
+      title: "4단계 (최종): 초대교회 최초의 순교자 집사님은?",
+      hintHtml: `<span class="inline-block bg-yellow-200 text-yellow-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">✨ 최종 인물 맞추기</span><br>1~3단계에서 얻은 글자를 조합해 보세요.`,
+      answers: ["스데반"],
+      type: "grid",
+      letters: ["스", "데", "반", "바", "울", "베", "드", "로", "야", "고", "보", "요", "한"]
     }
   };
 
@@ -186,19 +185,13 @@
     });
   }
 
-  function renderLetterGrid(letters, isFinal = false) {
+  function renderLetterGrid(letters) {
     const gridContainer = document.getElementById("letterGrid");
     gridContainer.innerHTML = "";
     
-    const sanitized = letters.map(l => l.length > 2 ? l.substring(0, 1) : l);
-    
-    sanitized.forEach((char) => {
+    letters.forEach((char) => {
       const btn = document.createElement("button");
-      if (isFinal) {
-        btn.className = "letter-btn-final bg-amber-100 hover:bg-amber-200 border-2 border-amber-300 text-amber-900 font-bold text-lg py-2.5 rounded-xl font-jua";
-      } else {
-        btn.className = "letter-btn bg-emerald-100 hover:bg-emerald-200 border-2 border-emerald-300 text-emerald-900 font-bold text-lg py-2.5 rounded-xl font-jua";
-      }
+      btn.className = "letter-btn bg-emerald-100 hover:bg-emerald-200 border-2 border-emerald-300 text-emerald-900 font-bold text-lg py-2.5 rounded-xl font-jua";
       btn.innerText = char;
       btn.onclick = () => appendLetter(char);
       gridContainer.appendChild(btn);
@@ -245,11 +238,8 @@
 
     answerSection.classList.remove("hidden");
 
-    if (step === 2) {
-      unlockedHintCard.innerText = stepHintsEarned[1];
-      unlockedHintCard.classList.remove("hidden");
-    } else if (step === 3) {
-      unlockedHintCard.innerHTML = `${stepHintsEarned[1]}<br>${stepHintsEarned[2]}`;
+    if (step === 4) {
+      unlockedHintCard.innerHTML = `🎁 1~3단계에서 모은 <span class="text-amber-700 font-extrabold text-base">3개의 글자</span>를 조합하여 인물의 이름을 완성해보세요!`;
       unlockedHintCard.classList.remove("hidden");
     } else {
       unlockedHintCard.classList.add("hidden");
@@ -262,7 +252,7 @@
     } else if (data.type === "grid") {
       mcqArea.classList.add("hidden");
       gridArea.classList.remove("hidden");
-      renderLetterGrid(shuffleArray(data.letters), step === 4);
+      renderLetterGrid(shuffleArray(data.letters));
     }
 
     document.getElementById("answerInput").value = "";
@@ -292,7 +282,7 @@
         
         resultMsg.innerHTML = `
           <div class="bg-emerald-100 border-2 border-emerald-400 rounded-2xl p-5 text-emerald-950 font-bold text-base leading-relaxed modal-pop shadow-md text-center">
-            🎉 정답입니다! (변화) <br><br>
+            🎉 정답입니다! (스데반) <br><br>
             🤫 <span class="text-purple-800 text-base md:text-lg block mt-1">목장에서 가장 어린 목원이 사회자에게 귓속말로 정답을 알려주세요!</span>
           </div>
         `;
@@ -325,13 +315,13 @@
 
     if (step === 1) {
       modalTitle.innerText = "🎉 1단계 통과!";
-      contentBox.innerHTML = `예수님의 첫 번째 수제자이자 위대한 제자 베드로!`;
+      contentBox.innerHTML = `첫 번째 힌트 글자 획득: <span class="text-amber-600 font-extrabold text-xl">'${stepLettersEarned[1]}'</span>`;
     } else if (step === 2) {
-      modalTitle.innerText = "🎉 2단계 정답! 힌트 획득!";
-      contentBox.innerHTML = `<span class="text-emerald-700 block mb-1">🎁 획득한 힌트</span>"${stepHintsEarned[2]}"`;
+      modalTitle.innerText = "🎉 2단계 정답!";
+      contentBox.innerHTML = `두 번째 힌트 글자 획득: <span class="text-amber-600 font-extrabold text-xl">'${stepLettersEarned[2]}'</span>`;
     } else if (step === 3) {
-      modalTitle.innerText = "🎉 3단계 성공! 최종 단계 해금!";
-      contentBox.innerHTML = `축하합니다! 4단계 최종 주제 맞추기(🔒 해금)가 열렸습니다!`;
+      modalTitle.innerText = "🎉 3단계 성공!";
+      contentBox.innerHTML = `세 번째 힌트 글자 획득: <span class="text-amber-600 font-extrabold text-xl">'${stepLettersEarned[3]}'</span><br><br>🔓 최종 4단계가 해금되었습니다!`;
     }
 
     overlay.classList.remove("hidden");

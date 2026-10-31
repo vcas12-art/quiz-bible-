@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>유초등2부 말씀 퀴즈 - 십자가 사랑</title>
+  <title>유초등2부 말씀 퀴즈 - 추수감사주일</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
   <style>
@@ -55,10 +55,10 @@
   </div>
 
   <!-- Main Bible Verse Banner -->
-  <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-3 mb-4 text-center">
-    <p class="text-xs md:text-sm font-bold text-rose-900 leading-relaxed">
-      📖 <span class="underline decoration-amber-400 decoration-2">"우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라"</span>
-      <span class="block text-xs text-rose-600 font-normal mt-0.5">(로마서 5장 8절)</span>
+  <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 mb-4 text-center">
+    <p class="text-xs md:text-sm font-bold text-amber-900 leading-relaxed">
+      📖 <span class="underline decoration-amber-400 decoration-2">"범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라"</span>
+      <span class="block text-xs text-amber-600 font-normal mt-0.5">(데살로니가전서 5장 18절)</span>
     </p>
   </div>
 
@@ -125,39 +125,39 @@
 
   // Words earned per step
   let stepWordsEarned = {
-    1: "사랑",
-    2: "십자가",
-    3: "예수님"
+    1: "감사",
+    2: "주일",
+    3: "추수"
   };
 
   const stepData = {
     1: {
-      title: "1단계: 하나님이 우리에게 보여주신 가장 큰 마음은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(4지 선다)</span><br>하나님이 외아들 예수님을 이 땅에 보내주실 만큼 우리에게 베풀어주신 마음은 무엇일까요?`,
-      answers: ["사랑", "1", "①", "1번"],
+      title: "1단계: 하나님이 베풀어주신 은혜에 드리는 마음은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(4지 선다)</span><br>하나님께서 주신 은혜와 사랑에 고마운 마음을 표현하는 이것은 무엇일까요?`,
+      answers: ["감사", "1", "①", "1번"],
       type: "mcq",
-      options: ["① 사랑", "② 미움", "③ 분노", "④ 질투"]
+      options: ["① 감사", "② 불평", "③ 걱정", "④ 질투"]
     },
     2: {
-      title: "2단계: 예수님이 우리 죄를 대신해 지신 이것은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>우리의 죄를 용서하기 위해 예수님이 피 흘려 구원을 완성하신 나무 틀은 무엇일까요?`,
-      answers: ["십자가"],
+      title: "2단계: 하나님께 나와 예배드리는 거룩한 날은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>우리가 함께 모여 하나님을 찬양하고 예배드리는 날은 무슨 날일까요?`,
+      answers: ["주일"],
       type: "grid",
-      letters: ["십", "자", "가", "면", "류", "관", "무", "덤", "돌", "판", "성", "전"]
+      letters: ["주", "일", "월", "화", "수", "목", "금", "토", "평", "일", "아", "침"]
     },
     3: {
-      title: "3단계: 우리를 위해 십자가에서 죽으시고 부활하신 분은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>온 세상을 구원하신 우리의 유일한 구원자는 누구이신가요?`,
-      answers: ["예수님"],
+      title: "3단계: 한 해 동안 가꾼 열매를 거두어들이는 것은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>하나님이 자라게 하신 곡식과 열매를 기쁨으로 거두는 것을 무엇이라고 할까요?`,
+      answers: ["추수"],
       type: "grid",
-      letters: ["예", "수", "님", "베", "드", "로", "바", "울", "요", "한", "모", "세"]
+      letters: ["추", "수", "씨", "앗", "농", "사", "밭", "논", "열", "매", "결", "실"]
     },
     4: {
       title: "4단계 (최종): 1~3단계 낱말을 조합해보세요!",
-      hintHtml: `<span class="inline-block bg-rose-200 text-rose-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">✨ 최종 주제 맞추기</span><br>각 단계에서 맞춘 낱말들을 조합하여 멋진 문장을 완성해보세요!`,
-      answers: ["예수님의십자가사랑", "예수님의 십자가 사랑", "예수님 십자가 사랑"],
+      hintHtml: `<span class="inline-block bg-rose-200 text-rose-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">✨ 최종 주제 맞추기</span><br>1~3단계에서 얻은 낱말들을 조합하여 이번 주 주일 이름을 완성해보세요!`,
+      answers: ["추수감사주일", "추수 감사 주일", "추수감사 주일"],
       type: "grid",
-      letters: ["예수님", "의", "십자가", "사랑", "은혜", "구원", "믿음"]
+      letters: ["추수", "감사", "주일", "성탄", "부활", "기쁨", "찬양"]
     }
   };
 
@@ -289,9 +289,9 @@
         document.getElementById("mcqOptionsArea").classList.add("hidden");
         
         resultMsg.innerHTML = `
-          <div class="bg-rose-100 border-2 border-rose-400 rounded-2xl p-5 text-rose-950 font-bold text-base leading-relaxed modal-pop shadow-md text-center">
-            🎉 정답입니다! (예수님의 십자가 사랑) <br><br>
-            🤫 <span class="text-purple-800 text-base md:text-lg block mt-1">목장에서 가장 어린 목원이 사회자에게 귓속말로 정답을 알려주세요!</span>
+          <div class="bg-amber-100 border-2 border-amber-400 rounded-2xl p-5 text-amber-950 font-bold text-base leading-relaxed modal-pop shadow-md text-center">
+            🎉 정답입니다! (추수감사주일) <br><br>
+            🤫 <span class="text-amber-800 text-base md:text-lg block mt-1">목장에서 가장 어린 목원이 사회자에게 귓속말로 정답을 알려주세요!</span>
           </div>
         `;
         return;

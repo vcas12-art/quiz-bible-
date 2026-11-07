@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>유초등2부 말씀 퀴즈 - 추수감사주일</title>
+  <title>유초등2부 말씀 퀴즈 - 은혜와 같은 만나</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
   <style>
@@ -57,8 +57,8 @@
   <!-- Main Bible Verse Banner -->
   <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 mb-4 text-center">
     <p class="text-xs md:text-sm font-bold text-amber-900 leading-relaxed">
-      📖 <span class="underline decoration-amber-400 decoration-2">"범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라"</span>
-      <span class="block text-xs text-amber-600 font-normal mt-0.5">(데살로니가전서 5장 18절)</span>
+      📖 <span class="underline decoration-amber-400 decoration-2">"하늘에서 양식을 비같이 내리리니 백성이 나가서 일용할 것을 날마다 거둘 것이라"</span>
+      <span class="block text-xs text-amber-600 font-normal mt-0.5">(출애굽기 16장 4절)</span>
     </p>
   </div>
 
@@ -72,7 +72,7 @@
     </div>
 
     <!-- Unlocked Hint Card for step 4 -->
-    <div id="unlockedHintCard" class="hidden w-full mt-3 p-3 bg-amber-100 border-2 border-amber-400 rounded-xl text-amber-900 font-bold text-xs md:text-sm">
+    <div id="unlockedHintCard" class="hidden w-full mt-3 p-3 bg-amber-100 border-2 border-amber-400 rounded-xl text-amber-900 font-bold text-xs md:text-sm text-left">
       <!-- Dynamic Step Hint -->
     </div>
 
@@ -123,41 +123,34 @@
   let currentStep = 1;
   let unlockedStep = 1;
 
-  // Words earned per step
-  let stepWordsEarned = {
-    1: "감사",
-    2: "주일",
-    3: "추수"
-  };
-
   const stepData = {
     1: {
-      title: "1단계: 하나님이 베풀어주신 은혜에 드리는 마음은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(4지 선다)</span><br>하나님께서 주신 은혜와 사랑에 고마운 마음을 표현하는 이것은 무엇일까요?`,
-      answers: ["감사", "1", "①", "1번"],
+      title: "1단계: 하나님이 보내주신 새의 이름은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(4지 선다)</span><br>광야에서 이스라엘 백성이 고기를 원할 때 하나님께서 바람으로 보내주신 새는 무엇일까요?`,
+      answers: ["메추라기", "1", "①", "1번"],
       type: "mcq",
-      options: ["① 감사", "② 불평", "③ 걱정", "④ 질투"]
+      options: ["① 메추라기", "② 비둘기", "③ 독수리", "④ 까마귀"]
     },
     2: {
-      title: "2단계: 하나님께 나와 예배드리는 거룩한 날은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>우리가 함께 모여 하나님을 찬양하고 예배드리는 날은 무슨 날일까요?`,
-      answers: ["주일"],
+      title: "2단계: 이스라엘 백성이 걸어간 곳은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택 / 정답은 2글자)</span><br>하나님의 인도하심을 받으며 40년 동안 지냈던 건조하고 풀이 적은 이곳은 어디일까요?`,
+      answers: ["광야"],
       type: "grid",
-      letters: ["주", "일", "월", "화", "수", "목", "금", "토", "평", "일", "아", "침"]
+      letters: ["광", "야", "산", "들", "바", "다", "강", "사", "막", "궁", "전"]
     },
     3: {
-      title: "3단계: 한 해 동안 가꾼 열매를 거두어들이는 것은?",
-      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택)</span><br>하나님이 자라게 하신 곡식과 열매를 기쁨으로 거두는 것을 무엇이라고 할까요?`,
-      answers: ["추수"],
+      title: "3단계: 매일 아침 내려주신 음식은?",
+      hintHtml: `<span class="inline-block bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">(글자 선택 / 정답은 2글자)</span><br>하나님께서 하늘에서 꿀 섞은 과자 맛이 나는 이것을 매일 아침 내려주셨어요!`,
+      answers: ["만나"],
       type: "grid",
-      letters: ["추", "수", "씨", "앗", "농", "사", "밭", "논", "열", "매", "결", "실"]
+      letters: ["만", "나", "떡", "빵", "열", "매", "고", "기", "음", "식", "은", "혜"]
     },
     4: {
-      title: "4단계 (최종): 1~3단계 낱말을 조합해보세요!",
-      hintHtml: `<span class="inline-block bg-rose-200 text-rose-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">✨ 최종 주제 맞추기</span><br>1~3단계에서 얻은 낱말들을 조합하여 이번 주 주일 이름을 완성해보세요!`,
-      answers: ["추수감사주일", "추수 감사 주일", "추수감사 주일"],
-      type: "grid",
-      letters: ["추수", "감사", "주일", "성탄", "부활", "기쁨", "찬양"]
+      title: "4단계 (최종): 1~3단계 힌트를 조합하여 정답을 맞혀보세요!",
+      hintHtml: `<span class="inline-block bg-rose-200 text-rose-900 font-bold px-2.5 py-0.5 rounded-md text-xs mb-1.5 font-jua">✨ (4지 선다 / 정답은 2글자)</span><br>1~3단계를 해결하며 얻은 힌트를 바탕으로 이번 주 최종 정답을 선택해보세요!`,
+      answers: ["양식", "1", "①", "1번"],
+      type: "mcq",
+      options: ["① 양식", "② 요청", "③ 온천", "④ 일출"]
     }
   };
 
@@ -246,7 +239,14 @@
     answerSection.classList.remove("hidden");
 
     if (step === 4) {
-      unlockedHintCard.innerHTML = `🎁 1~3단계에서 얻은 낱말들을 조합하여 최종 정답 문장을 완성해보세요!`;
+      unlockedHintCard.innerHTML = `
+        <div class="font-jua text-sm text-rose-700 mb-2 border-b border-amber-300 pb-1">💡 1~3단계에서 모은 힌트 보관함</div>
+        <ul class="space-y-1.5 text-xs md:text-sm font-semibold text-amber-950">
+          <li>1️⃣ <strong>1단계 힌트:</strong> 이번 주 주제는 <span class="text-rose-600 font-bold">2글자</span> 입니다.</li>
+          <li>2️⃣ <strong>2단계 힌트:</strong> 우리가 날마다 먹는 음식과 생명을 유지하는 데 필요한 모든 은혜를 의미해요!</li>
+          <li>3️⃣ <strong>3단계 힌트:</strong> 하나님께서 광야에서 이스라엘 백성에게 매일 내려주신 은혜의 ' 이것 '을 기억해요!</li>
+        </ul>
+      `;
       unlockedHintCard.classList.remove("hidden");
     } else {
       unlockedHintCard.classList.add("hidden");
@@ -290,7 +290,7 @@
         
         resultMsg.innerHTML = `
           <div class="bg-amber-100 border-2 border-amber-400 rounded-2xl p-5 text-amber-950 font-bold text-base leading-relaxed modal-pop shadow-md text-center">
-            🎉 정답입니다! (추수감사주일) <br><br>
+            🎉 정답입니다! <br><br>
             🤫 <span class="text-amber-800 text-base md:text-lg block mt-1">목장에서 가장 어린 목원이 사회자에게 귓속말로 정답을 알려주세요!</span>
           </div>
         `;
@@ -323,13 +323,13 @@
 
     if (step === 1) {
       modalTitle.innerText = "🎉 1단계 통과!";
-      contentBox.innerHTML = `첫 번째 힌트 낱말 획득: <span class="text-rose-600 font-extrabold text-xl">'${stepWordsEarned[1]}'</span>`;
+      contentBox.innerHTML = `💡 첫 번째 힌트:<br><span class="text-rose-600 font-extrabold text-base md:text-lg font-jua">"이번 주 최종 주제는 2글자 입니다."</span>`;
     } else if (step === 2) {
-      modalTitle.innerText = "🎉 2단계 정답!";
-      contentBox.innerHTML = `두 번째 힌트 낱말 획득: <span class="text-rose-600 font-extrabold text-xl">'${stepWordsEarned[2]}'</span>`;
+      modalTitle.innerText = "🎉 2단계 통과!";
+      contentBox.innerHTML = `💡 두 번째 힌트:<br><span class="text-rose-600 font-extrabold text-base md:text-lg font-jua">"우리가 날마다 먹는 음식과 생명을 유지하는 데 필요한 모든 은혜를 의미해요!"</span>`;
     } else if (step === 3) {
-      modalTitle.innerText = "🎉 3단계 성공!";
-      contentBox.innerHTML = `세 번째 힌트 낱말 획득: <span class="text-rose-600 font-extrabold text-xl">'${stepWordsEarned[3]}'</span><br><br>🔓 최종 4단계가 해금되었습니다!`;
+      modalTitle.innerText = "🎉 3단계 통과!";
+      contentBox.innerHTML = `💡 세 번째 힌트:<br><span class="text-rose-600 font-extrabold text-base md:text-lg font-jua">"하나님께서 광야에서 매일 내려주신 은혜의 ' 이것 '을 기억해요!"</span><br><br>🔓 최종 4단계가 해금되었습니다!`;
     }
 
     overlay.classList.remove("hidden");
